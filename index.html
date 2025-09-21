@@ -174,6 +174,152 @@
 
   footer{ width:100%; max-width:1000px; margin-top:12px; text-align:center; color:#666; font-size:0.95rem; }
 
+  /* 奖励系统动画 */
+  @keyframes rewardSlide {
+    0% { transform: translateX(100%); opacity: 0; }
+    20% { transform: translateX(0); opacity: 1; }
+    80% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  @keyframes upgradePulse {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes celebrationBounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-30px); }
+    60% { transform: translateY(-15px); }
+  }
+
+  @keyframes celebrationSpin {
+    0% { transform: rotate(0deg) scale(0.5); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+  }
+
+  /* 奖励显示区域 */
+  .reward-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin: 8px 0;
+  }
+
+  /* 配色方案 */
+  :root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --accent-color: #45b7d1;
+    --success-color: #96ceb4;
+    --warning-color: #feca57;
+  }
+
+  /* 关卡配色变化 */
+  .level-1 { --primary-color: #ff6b6b; --secondary-color: #4ecdc4; }
+  .level-2 { --primary-color: #a8e6cf; --secondary-color: #ffd3a5; }
+  .level-3 { --primary-color: #ffd3a5; --secondary-color: #fd9853; }
+  .level-4 { --primary-color: #fd9853; --secondary-color: #a8e6cf; }
+  .level-5 { --primary-color: #4ecdc4; --secondary-color: #45b7d1; }
+  .level-6 { --primary-color: #45b7d1; --secondary-color: #96ceb4; }
+  .level-7 { --primary-color: #96ceb4; --secondary-color: #feca57; }
+  .level-8 { --primary-color: #feca57; --secondary-color: #ff6b6b; }
+  .level-9 { --primary-color: #ff9a9e; --secondary-color: #fecfef; }
+  .level-10 { --primary-color: #fecfef; --secondary-color: #a8e6cf; }
+
+  /* 立体可爱风格增强 */
+  .vcard {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 
+      8px 8px 16px rgba(0,0,0,0.1),
+      -8px -8px 16px rgba(255,255,255,0.7);
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+  }
+
+  .vcard:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      12px 12px 24px rgba(0,0,0,0.15),
+      -12px -12px 24px rgba(255,255,255,0.8);
+  }
+
+  .switch {
+    background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 25px;
+    box-shadow: 
+      6px 6px 12px rgba(0,0,0,0.2),
+      -6px -6px 12px rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+  }
+
+  .switch:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      8px 8px 16px rgba(0,0,0,0.25),
+      -8px -8px 16px rgba(255,255,255,0.4);
+  }
+
+  .switch:active {
+    transform: translateY(1px);
+    box-shadow: 
+      4px 4px 8px rgba(0,0,0,0.2),
+      -4px -4px 8px rgba(255,255,255,0.3);
+  }
+
+  /* 答案按钮立体效果 */
+  .answer-btn {
+    background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 20px;
+    box-shadow: 
+      6px 6px 12px rgba(0,0,0,0.2),
+      -6px -6px 12px rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+  }
+
+  .answer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      8px 8px 16px rgba(0,0,0,0.25),
+      -8px -8px 16px rgba(255,255,255,0.4);
+  }
+
+  .answer-btn:active {
+    transform: translateY(1px);
+    box-shadow: 
+      4px 4px 8px rgba(0,0,0,0.2),
+      -4px -4px 8px rgba(255,255,255,0.3);
+  }
+
+  /* 顶部横栏立体效果 */
+  header {
+    background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 
+      0 8px 16px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.3);
+    border-bottom: 3px solid rgba(255,255,255,0.2);
+  }
+
   /* 响应式 */
   @media (max-width:920px){
     .game{ grid-template-columns: 1fr; }
@@ -188,7 +334,7 @@
     <div class="meta">
       <span class="level">第 <strong id="levelLabel">1</strong> 关</span>
       &nbsp;·&nbsp;
-      <span class="progress">题 <span id="qIdx">0</span>/10　·　鱼干: <strong id="score">0</strong></span>
+      <span class="progress">题 <span id="qIdx">0</span>/10　·　🥢 <strong id="catSticks">0</strong>　🐟 <strong id="fish">0</strong>　🥫 <strong id="cans">0</strong></span>
     </div>
   </header>
 
@@ -257,6 +403,20 @@
 
         <div class="vcard" style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;gap:8px;align-items:center;">
+            <div style="font-weight:700;">奖励系统</div>
+          </div>
+          <div id="rewardDisplay" class="reward-display">
+            <div style="display: flex; gap: 15px; align-items: center; font-size: 14px;">
+              <span>🥢 0</span>
+              <span>🐟 0</span>
+              <span>🥫 0</span>
+            </div>
+          </div>
+          <div class="small">答对1题获得1个猫条，10个猫条换1个鱼干，10个鱼干换1个罐头！</div>
+        </div>
+
+        <div class="vcard" style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;gap:8px;align-items:center;">
             <div style="font-weight:700;">说明</div>
           </div>
           <div class="small">规则：每关 10 题，答对 8 题或以上才能晋级下一关。题目与答案不超过 <strong>150</strong>。可在右侧查看竖式帮助（不显示答案）。</div>
@@ -311,15 +471,25 @@
     // per-level progress
     qIndex: parseInt(localStorage.getItem('ruba_qIndex')||'0',10), // 0..9
     correctInLevel: parseInt(localStorage.getItem('ruba_correct')||'0',10),
+    // 新增奖励系统
+    catSticks: parseInt(localStorage.getItem('ruba_catSticks')||'0',10), // 猫条
+    fish: parseInt(localStorage.getItem('ruba_fish')||'0',10), // 鱼干
+    cans: parseInt(localStorage.getItem('ruba_cans')||'0',10), // 罐头
   };
 
   // UI 初始显示
   levelLabel.textContent = game.level;
   levelNumber.textContent = game.level;
-  scoreEl.textContent = game.score;
+  if(scoreEl) scoreEl.textContent = game.score;
   qIdx.textContent = game.qIndex;
   qNumber.textContent = game.qIndex + 1;
   correctThis.textContent = game.correctInLevel;
+  
+  // 更新奖励显示
+  updateRewardDisplay();
+  
+  // 应用关卡配色
+  applyLevelColors();
 
   // 模式 choose / fill
   let mode = 'choose';
@@ -433,17 +603,193 @@
     setTimeout(()=> fish.remove(), 1000);
   }
 
+  // 彩带动画
+  function spawnConfetti(){
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.textContent = ['🎉', '✨', '🌟', '💫', '🎊'][randInt(0, 4)];
+    const areaW = fishDropArea.clientWidth || 300;
+    const left = Math.max(8, Math.min(areaW-36, (areaW/2 - 18) + randInt(-100,100)));
+    confetti.style.left = left + 'px';
+    confetti.style.animation = 'confettiFall 2s ease-out forwards';
+    fishDropArea.appendChild(confetti);
+    setTimeout(()=> confetti.remove(), 2000);
+  }
+
+  // 检查升级系统
+  function checkUpgrade(){
+    // 10个猫条换1个鱼干
+    if(game.catSticks >= 10){
+      game.catSticks -= 10;
+      game.fish += 1;
+      showUpgradeEffect('fish');
+    }
+    
+    // 10个鱼干换1个罐头
+    if(game.fish >= 10){
+      game.fish -= 10;
+      game.cans += 1;
+      showUpgradeEffect('can');
+    }
+  }
+
+  // 显示升级效果
+  function showUpgradeEffect(type){
+    const upgradeDiv = document.createElement('div');
+    upgradeDiv.className = 'upgrade-effect';
+    upgradeDiv.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+      color: white;
+      padding: 20px 40px;
+      border-radius: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      z-index: 1000;
+      animation: upgradePulse 2s ease-out forwards;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    `;
+    
+    if(type === 'fish'){
+      upgradeDiv.innerHTML = '🎉 恭喜！10个猫条换1个鱼干！🐟';
+    } else if(type === 'can'){
+      upgradeDiv.innerHTML = '🎊 太棒了！10个鱼干换1个罐头！🥫';
+    }
+    
+    document.body.appendChild(upgradeDiv);
+    setTimeout(()=> upgradeDiv.remove(), 2000);
+  }
+
+  // 显示奖励效果
+  function showRewardEffect(type){
+    const rewardDiv = document.createElement('div');
+    rewardDiv.className = 'reward-effect';
+    rewardDiv.style.cssText = `
+      position: fixed;
+      top: 20%;
+      right: 20px;
+      background: linear-gradient(45deg, #ff9a9e, #fecfef);
+      color: #333;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      z-index: 999;
+      animation: rewardSlide 1.5s ease-out forwards;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    `;
+    
+    if(type === 'catStick'){
+      rewardDiv.innerHTML = '🥢 +1 猫条';
+    }
+    
+    document.body.appendChild(rewardDiv);
+    setTimeout(()=> rewardDiv.remove(), 1500);
+  }
+
+  // 更新奖励显示
+  function updateRewardDisplay(){
+    // 更新右上角显示
+    document.getElementById('catSticks').textContent = game.catSticks;
+    document.getElementById('fish').textContent = game.fish;
+    document.getElementById('cans').textContent = game.cans;
+    
+    // 更新右侧奖励区域显示
+    const rewardDisplay = document.getElementById('rewardDisplay');
+    if(rewardDisplay){
+      rewardDisplay.innerHTML = `
+        <div style="display: flex; gap: 15px; align-items: center; font-size: 14px;">
+          <span>🥢 ${game.catSticks}</span>
+          <span>🐟 ${game.fish}</span>
+          <span>🥫 ${game.cans}</span>
+        </div>
+      `;
+    }
+  }
+
+  // 应用关卡配色
+  function applyLevelColors(){
+    const level = Math.min(game.level, 10); // 最多10种配色
+    document.body.className = `level-${level}`;
+  }
+
+  // 增强过关庆祝效果
+  function showLevelUpCelebration(got){
+    // 创建庆祝遮罩
+    const celebrationOverlay = document.createElement('div');
+    celebrationOverlay.className = 'celebration-overlay';
+    celebrationOverlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+      background-size: 400% 400%;
+      animation: gradientShift 3s ease infinite;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'PingFang SC', 'Microsoft Yahei', sans-serif;
+    `;
+    
+    celebrationOverlay.innerHTML = `
+      <div style="text-align: center; animation: celebrationBounce 1s ease-out;">
+        <div style="font-size: 80px; margin-bottom: 20px; animation: celebrationSpin 2s ease-in-out;">🎉</div>
+        <h1 style="font-size: 48px; margin: 0; text-shadow: 3px 3px 6px rgba(0,0,0,0.3);">太棒了！</h1>
+        <h2 style="font-size: 32px; margin: 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">第${game.level}关通过！</h2>
+        <p style="font-size: 24px; margin: 20px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">答对了 ${got} / ${perLevelCount} 题</p>
+        <div style="font-size: 20px; margin: 30px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+          <p>🥢 猫条: ${game.catSticks} | 🐟 鱼干: ${game.fish} | 🥫 罐头: ${game.cans}</p>
+        </div>
+        <div style="font-size: 18px; margin-top: 20px; opacity: 0.9;">
+          <p>继续加油，解锁更多奖励！</p>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(celebrationOverlay);
+    
+    // 5秒后移除庆祝界面并应用新配色
+    setTimeout(()=> {
+      celebrationOverlay.remove();
+      applyLevelColors(); // 应用新关卡配色
+    }, 5000);
+  }
+
   // 答题
   function handleAnswer(userVal){
     const correct = currentQ.answer;
     if(Number(userVal) === correct){
       game.score += 1;
       game.correctInLevel += 1;
-      scoreEl.textContent = game.score;
+      
+      // 新增：答对获得1个猫条
+      game.catSticks += 1;
+      
+      // 检查升级
+      checkUpgrade();
+      
+      if(scoreEl) scoreEl.textContent = game.score;
       correctThis.textContent = game.correctInLevel;
+      updateRewardDisplay();
+      
       localStorage.setItem('ruba_score', game.score);
+      localStorage.setItem('ruba_catSticks', game.catSticks);
+      localStorage.setItem('ruba_fish', game.fish);
+      localStorage.setItem('ruba_cans', game.cans);
+      
       setCatState('crazy');
       spawnFish();
+      
+      // 显示获得猫条的效果
+      showRewardEffect('catStick');
     } else {
       setCatState('sad');
       setTimeout(()=> {
@@ -464,7 +810,9 @@
   function evaluateLevel(){
     const got = game.correctInLevel;
     if(got >= correctThreshold){
-      alert(`太棒了！本关答对 ${got} / ${perLevelCount}，已通过并进入下一关！`);
+      // 增强过关奖励效果
+      showLevelUpCelebration(got);
+      
       game.level += 1;
       game.qIndex = 0;
       game.correctInLevel = 0;
@@ -473,8 +821,12 @@
       localStorage.setItem('ruba_correct', game.correctInLevel);
       levelLabel.textContent = game.level;
       levelNumber.textContent = game.level;
-      for(let i=0;i<6;i++){ setTimeout(spawnFish, 80*i); }
-      setTimeout(()=> renderQuestion(), 900);
+      
+      // 增强过关特效
+      for(let i=0;i<12;i++){ setTimeout(() => spawnFish(), 60*i); }
+      for(let i=0;i<8;i++){ setTimeout(() => spawnConfetti(), 100*i); }
+      
+      setTimeout(()=> renderQuestion(), 2000);
     } else {
       alert(`本关答对 ${got} / ${perLevelCount}（未达到 ${correctThreshold}）。再来一次吧！`);
       game.qIndex = 0;
@@ -525,18 +877,22 @@
 
   // 重置
   resetBtn.addEventListener('click', ()=>{
-    if(confirm('确认重置关卡与鱼干分数吗？')) {
-      game = { level:1, score:0, qIndex:0, correctInLevel:0 };
+    if(confirm('确认重置关卡与所有奖励吗？')) {
+      game = { level:1, score:0, qIndex:0, correctInLevel:0, catSticks:0, fish:0, cans:0 };
       localStorage.setItem('ruba_level', '1');
       localStorage.setItem('ruba_score', '0');
       localStorage.setItem('ruba_qIndex', '0');
       localStorage.setItem('ruba_correct', '0');
+      localStorage.setItem('ruba_catSticks', '0');
+      localStorage.setItem('ruba_fish', '0');
+      localStorage.setItem('ruba_cans', '0');
       levelLabel.textContent = '1';
       levelNumber.textContent = '1';
-      scoreEl.textContent = '0';
+      if(scoreEl) scoreEl.textContent = '0';
       qIdx.textContent = '0';
       qNumber.textContent = '1';
       correctThis.textContent = '0';
+      updateRewardDisplay();
       renderQuestion();
     }
   });
