@@ -225,7 +225,7 @@
 
       <div class="controls-row" style="margin-top:6px;">
         <button id="modeToggle" class="switch">切换到 填空题模式</button>
-        <button id="showVertBtn" class="switch">显示竖式</button>
+        <button id="showVertBtn" class="switch">隐藏竖式</button>
         <button id="soundToggle" class="switch" aria-pressed="true">音效：开</button>
         <button id="resetBtn" class="switch">重置关卡与分数</button>
       </div>
@@ -239,7 +239,7 @@
             <div><strong id="hintTitle">竖式提示</strong></div>
             <div class="small">（只展示排列，不给结果）</div>
           </div>
-          <pre class="vcols" id="verticalArea">点“显示竖式”有提示</pre>
+          <pre class="vcols" id="verticalArea">竖式已显示，点击"隐藏竖式"可隐藏</pre>
         </div>
 
         <div class="vcard">
@@ -382,7 +382,7 @@
       answerInput.value = '';
       answerInput.focus();
     }
-    if(isVertShown) renderVertical(currentQ);
+    renderVertical(currentQ);
     qIdx.textContent = game.qIndex;
     qNumber.textContent = game.qIndex + 1;
   }
@@ -502,7 +502,7 @@
   });
 
   // 竖式显示逻辑
-  let isVertShown = false;
+  let isVertShown = true;
   showVertBtn.addEventListener('click', ()=>{
     isVertShown = !isVertShown;
     showVertBtn.textContent = isVertShown ? '隐藏竖式' : '显示竖式';
