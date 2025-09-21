@@ -320,6 +320,352 @@
     border-bottom: 3px solid rgba(255,255,255,0.2);
   }
 
+  /* 隐藏奖励效果 */
+  
+  /* 泡泡效果 */
+  .bubble {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(173, 216, 230, 0.6), rgba(135, 206, 250, 0.2));
+    border-radius: 50%;
+    pointer-events: none;
+    animation: bubbleFloat 3s ease-in-out infinite;
+    border: 2px solid rgba(135, 206, 250, 0.4);
+  }
+  
+  @keyframes bubbleFloat {
+    0% { 
+      transform: translateY(0) scale(0.8);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateY(-30px) scale(1.2);
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(-60px) scale(0.6);
+      opacity: 0;
+    }
+  }
+  
+  /* 小老鼠玩具效果 */
+  .mouse-toy {
+    position: absolute;
+    font-size: 32px;
+    pointer-events: none;
+    animation: mouseMove 4s ease-in-out infinite;
+  }
+  
+  @keyframes mouseMove {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); }
+    25% { transform: translateX(50px) translateY(-20px) rotate(10deg); }
+    50% { transform: translateX(100px) translateY(0) rotate(-5deg); }
+    75% { transform: translateX(50px) translateY(20px) rotate(8deg); }
+    100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  }
+  
+  /* 撸猫效果 */
+  .petting-hand {
+    position: absolute;
+    font-size: 120px;
+    pointer-events: none;
+    animation: pettingMove 2s ease-in-out infinite;
+  }
+  
+  /* 修剪猫毛效果 */
+  .scissors {
+    position: absolute;
+    font-size: 40px;
+    pointer-events: none;
+    animation: scissorsCut 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes scissorsCut {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); }
+    25% { transform: translateX(10px) translateY(-5px) rotate(15deg); }
+    50% { transform: translateX(20px) translateY(0) rotate(-10deg); }
+    75% { transform: translateX(10px) translateY(5px) rotate(20deg); }
+    100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  }
+  
+  /* 猫毛掉落效果 */
+  .cat-hair {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #8b4513;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: hairFall 2s ease-out forwards;
+  }
+  
+  @keyframes hairFall {
+    0% { 
+      transform: translateY(0) rotate(0deg); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: translateY(80px) rotate(360deg); 
+      opacity: 0; 
+    }
+  }
+  
+  /* 主人抱抱效果 */
+  .hug-hands {
+    position: absolute;
+    font-size: 60px;
+    pointer-events: none;
+    animation: hugMove 3s ease-in-out infinite;
+  }
+  
+  @keyframes hugMove {
+    0% { transform: translateX(0) translateY(0) scale(1); }
+    25% { transform: translateX(-20px) translateY(-10px) scale(1.1); }
+    50% { transform: translateX(0) translateY(0) scale(1.2); }
+    75% { transform: translateX(20px) translateY(-10px) scale(1.1); }
+    100% { transform: translateX(0) translateY(0) scale(1); }
+  }
+  
+  @keyframes pettingMove {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); }
+    25% { transform: translateX(30px) translateY(-10px) rotate(15deg); }
+    50% { transform: translateX(60px) translateY(0) rotate(-10deg); }
+    75% { transform: translateX(30px) translateY(10px) rotate(20deg); }
+    100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  }
+  
+  /* 奖励解锁提示 */
+  .unlock-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1000;
+    animation: unlockPulse 3s ease-out forwards;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  
+  @keyframes unlockPulse {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    20% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    80% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+  }
+  
+  /* 动态提示文字效果 */
+  .effect-speech {
+    position: absolute;
+    font-family: "PingFang SC", "Microsoft Yahei", "Noto Sans SC", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background: linear-gradient(45deg, #fff, #f0f8ff);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid #87ceeb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    pointer-events: none;
+    z-index: 15;
+    white-space: nowrap;
+    animation: speechBubble 3s ease-out forwards;
+  }
+  
+  @keyframes speechBubble {
+    0% { 
+      transform: translateY(0) scale(0.8); 
+      opacity: 0; 
+    }
+    15% { 
+      transform: translateY(-10px) scale(1.1); 
+      opacity: 1; 
+    }
+    85% { 
+      transform: translateY(-10px) scale(1); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: translateY(-20px) scale(0.9); 
+      opacity: 0; 
+    }
+  }
+  
+  /* 泡泡效果专用提示 */
+  .bubble-speech {
+    color: #1e90ff;
+    background: linear-gradient(45deg, #e6f3ff, #b3d9ff);
+    border-color: #87ceeb;
+  }
+  
+  /* 小老鼠效果专用提示 */
+  .mouse-speech {
+    color: #8b4513;
+    background: linear-gradient(45deg, #fff8dc, #f5deb3);
+    border-color: #daa520;
+  }
+  
+  /* 撸猫效果专用提示 */
+  .petting-speech {
+    color: #ff69b4;
+    background: linear-gradient(45deg, #ffe4e1, #ffb6c1);
+    border-color: #ff69b4;
+  }
+  
+  /* 修剪猫毛效果专用提示 */
+  .scissors-speech {
+    color: #ff4500;
+    background: linear-gradient(45deg, #fff5ee, #ffd700);
+    border-color: #ff8c00;
+  }
+  
+  /* 主人抱抱效果专用提示 */
+  .hug-speech {
+    color: #8b008b;
+    background: linear-gradient(45deg, #f0e6ff, #dda0dd);
+    border-color: #9370db;
+  }
+
+  /* 倒计时样式 */
+  .timer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 20;
+    animation: timerPulse 1s ease-in-out infinite;
+  }
+  
+  @keyframes timerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .timer.warning {
+    background: linear-gradient(45deg, #ff4757, #ff3838);
+    animation: timerWarning 0.5s ease-in-out infinite;
+  }
+  
+  @keyframes timerWarning {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  /* 管理员设置面板 */
+  .admin-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: none;
+    min-width: 400px;
+  }
+  
+  .admin-panel h3 {
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #ecf0f1;
+  }
+  
+  .admin-panel label {
+    display: block;
+    margin: 15px 0 5px 0;
+    font-weight: bold;
+  }
+  
+  .admin-panel input {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .admin-panel button {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+  }
+  
+  .admin-panel button:hover {
+    background: linear-gradient(45deg, #2980b9, #1f618d);
+  }
+  
+  .admin-panel .close-btn {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+  }
+  
+  .admin-panel .close-btn:hover {
+    background: linear-gradient(45deg, #c0392b, #a93226);
+  }
+  
+  /* 管理员钥匙按钮 */
+  .admin-key-btn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border: 2px solid #ff8c00;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .admin-key-btn:hover {
+    background: linear-gradient(45deg, #ffed4e, #ffd700);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5);
+  }
+  
+  .admin-key-btn:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  /* 隐藏管理员按钮（保留作为备用） */
+  .admin-trigger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    display: none; /* 隐藏备用按钮 */
+  }
+
   /* 响应式 */
   @media (max-width:920px){
     .game{ grid-template-columns: 1fr; }
@@ -336,6 +682,7 @@
       &nbsp;·&nbsp;
       <span class="progress">题 <span id="qIdx">0</span>/10　·　🥖 <strong id="catSticks">0</strong>　🐟 <strong id="fish">0</strong>　🥫 <strong id="cans">0</strong></span>
     </div>
+    <button class="admin-key-btn" id="adminKeyBtn" title="管理员设置">🔑</button>
   </header>
 
   <div class="game">
@@ -347,6 +694,8 @@
       </div>
 
       <div class="cat-area" id="catArea" aria-hidden="false">
+        <!-- 倒计时显示 -->
+        <div class="timer" id="timer" style="display: none;">10</div>
         <!-- GIF 猫咪：等待 / 开心 / 伤心（使用 Base64 占位符） -->
         <!-- 修改为GitHub路径引用 -->
         <img id="cat-wait" class="cat-gif" alt="如宝等待" src="images/cat-wait.gif" />
@@ -425,7 +774,25 @@
     </div>
   </div>
 
-  <footer>如需换猫咪图片或调整规则告诉我，我可以帮你继续优化（加音效、解锁道具等）。</footer>
+  <footer>快乐游戏，快乐学习，快乐撸猫。</footer>
+  
+  <!-- 隐藏管理员按钮 -->
+  <button class="admin-trigger" id="adminTrigger" title="管理员设置"></button>
+  
+  <!-- 管理员设置面板 -->
+  <div class="admin-panel" id="adminPanel">
+    <h3>🔧 管理员设置</h3>
+    <label for="maxValue">最大数值设置：</label>
+    <input type="number" id="maxValue" value="150" min="50" max="1000">
+    
+    <label for="timerValue">答题计时（秒）：</label>
+    <input type="number" id="timerValue" value="20" min="5" max="60">
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <button id="saveSettings">保存设置</button>
+      <button class="close-btn" id="closeAdmin">关闭</button>
+    </div>
+  </div>
 
 <script>
 /* ------------------------
@@ -475,6 +842,12 @@
     catSticks: parseInt(localStorage.getItem('ruba_catSticks')||'0',10), // 猫条
     fish: parseInt(localStorage.getItem('ruba_fish')||'0',10), // 鱼干
     cans: parseInt(localStorage.getItem('ruba_cans')||'0',10), // 罐头
+    // 隐藏奖励解锁状态
+    unlockedBubbles: localStorage.getItem('ruba_unlockedBubbles') === 'true',
+    unlockedMice: localStorage.getItem('ruba_unlockedMice') === 'true',
+    unlockedPetting: localStorage.getItem('ruba_unlockedPetting') === 'true',
+    unlockedScissors: localStorage.getItem('ruba_unlockedScissors') === 'true',
+    unlockedHug: localStorage.getItem('ruba_unlockedHug') === 'true',
   };
 
   // UI 初始显示
@@ -490,51 +863,147 @@
   
   // 应用关卡配色
   applyLevelColors();
+  
+  // 检查隐藏奖励解锁状态
+  checkHiddenRewards();
 
   // 模式 choose / fill
   let mode = 'choose';
 
   // 当前题目对象
   let currentQ = null;
+  
+  // 隐藏奖励轮换计数器（用于测试）
+  let rewardCounter = 0;
+  
+  // 游戏设置
+  let gameSettings = {
+    maxValue: parseInt(localStorage.getItem('ruba_maxValue') || '150', 10),
+    timerValue: parseInt(localStorage.getItem('ruba_timerValue') || '20', 10)
+  };
+  
+  // 倒计时相关
+  let timer = null;
+  let timeLeft = gameSettings.timerValue;
+  let timerElement = document.getElementById('timer');
 
   // 工具：随机整数
   function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 
-  // 生成题目，保证数字和结果 <= 150
+  // 生成题目，确保至少有一个2位数或3位数
   function genQuestion(){
     const op = Math.random() > 0.5 ? '+' : '-';
-    let a,b,ans;
+    let a, b, ans;
+    const maxVal = gameSettings.maxValue;
+    
     if(op === '+'){
-      a = randInt(10,140);
-      const bMax = Math.max(10, Math.min(140, 150 - a));
-      b = randInt(10, bMax);
+      // 确保至少有一个2位数或3位数
+      if(Math.random() > 0.5) {
+        // a是2位数或3位数
+        a = randInt(10, maxVal - 10);
+        const bMax = Math.max(10, Math.min(maxVal - 10, maxVal - a));
+        b = randInt(10, bMax);
+      } else {
+        // b是2位数或3位数
+        b = randInt(10, maxVal - 10);
+        const aMax = Math.max(10, Math.min(maxVal - 10, maxVal - b));
+        a = randInt(10, aMax);
+      }
       ans = a + b;
-      if(ans > 150){
-        b = Math.max(10, 150 - a);
+      if(ans > maxVal){
+        b = Math.max(10, maxVal - a);
         ans = a + b;
       }
     } else {
-      a = randInt(10,150);
-      b = randInt(10, Math.min(a,150));
-      if(a - b > 150){
-        b = a - 150;
+      // 减法：确保至少有一个2位数或3位数
+      if(Math.random() > 0.5) {
+        // a是2位数或3位数
+        a = randInt(20, maxVal);
+        b = randInt(10, Math.min(a, maxVal));
+      } else {
+        // b是2位数或3位数
+        b = randInt(10, maxVal);
+        a = randInt(b + 10, Math.min(maxVal, b + maxVal));
       }
       ans = a - b;
     }
     return { num1: a, num2: b, operator: op, answer: ans };
   }
 
-  // 生成 5 个选项：正确 + 4 个干扰
+  // 生成 10 个选项：正确 + 9 个干扰
   function genOptions(correct){
     const set = new Set([correct]);
-    while(set.size < 5){
-      const delta = randInt(-20,20);
-      const cand = correct + delta;
-      if(cand >= 0 && cand <= 150) set.add(cand);
+    const maxVal = gameSettings.maxValue;
+    
+    // 生成不同类型的干扰选项
+    while(set.size < 10){
+      let cand;
+      const rand = Math.random();
+      
+      if(rand < 0.3) {
+        // 30%概率：接近正确答案的选项
+        const delta = randInt(-10, 10);
+        cand = correct + delta;
+      } else if(rand < 0.5) {
+        // 20%概率：个位数差异
+        const delta = randInt(-5, 5);
+        cand = correct + delta;
+      } else if(rand < 0.7) {
+        // 20%概率：十位数差异
+        const delta = randInt(-50, 50);
+        cand = correct + delta;
+      } else if(rand < 0.85) {
+        // 15%概率：完全随机
+        cand = randInt(0, maxVal);
+      } else {
+        // 15%概率：常见错误答案（如个位数相加、十位数相加等）
+        const tens = Math.floor(correct / 10) * 10;
+        const ones = correct % 10;
+        cand = tens + randInt(-20, 20);
+      }
+      
+      if(cand >= 0 && cand <= maxVal) set.add(cand);
     }
+    
     const arr = Array.from(set);
-    for(let i=arr.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+    // 随机打乱选项顺序
+    for(let i=arr.length-1;i>0;i--){ 
+      const j = Math.floor(Math.random()*(i+1)); 
+      [arr[i],arr[j]]=[arr[j],arr[i]]; 
+    }
     return arr;
+  }
+
+  // 倒计时功能
+  function startTimer(){
+    timeLeft = gameSettings.timerValue;
+    timerElement.style.display = 'block';
+    timerElement.textContent = timeLeft;
+    timerElement.classList.remove('warning');
+    
+    timer = setInterval(() => {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+      
+      if(timeLeft <= 3) {
+        timerElement.classList.add('warning');
+      }
+      
+      if(timeLeft <= 0) {
+        clearInterval(timer);
+        timerElement.style.display = 'none';
+        // 时间到，自动答错
+        handleAnswer(-999); // 用一个不可能的值表示超时
+      }
+    }, 1000);
+  }
+  
+  function stopTimer(){
+    if(timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+    timerElement.style.display = 'none';
   }
 
   // 显示题目与选项/填空
@@ -555,6 +1024,9 @@
     renderVertical(currentQ);
     qIdx.textContent = game.qIndex;
     qNumber.textContent = game.qIndex + 1;
+    
+    // 开始倒计时
+    startTimer();
   }
 
   function renderOptions(){
@@ -631,6 +1103,42 @@
       game.cans += 1;
       showUpgradeEffect('can');
     }
+    
+    // 检查隐藏奖励解锁
+    checkHiddenRewards();
+  }
+  
+  // 检查隐藏奖励解锁
+  function checkHiddenRewards(){
+    // 泡泡效果：5个罐头解锁
+    if(game.cans >= 5 && !game.unlockedBubbles){
+      game.unlockedBubbles = true;
+      localStorage.setItem('ruba_unlockedBubbles', 'true');
+      showUnlockNotification('🎉 解锁新奖励：猫咪洗澡泡泡效果！');
+    }
+    
+    // 小老鼠玩具：10个罐头解锁
+    if(game.cans >= 10 && !game.unlockedMice){
+      game.unlockedMice = true;
+      localStorage.setItem('ruba_unlockedMice', 'true');
+      showUnlockNotification('🎊 解锁新奖励：小老鼠玩具！');
+    }
+    
+    // 撸猫效果：15个罐头解锁
+    if(game.cans >= 15 && !game.unlockedPetting){
+      game.unlockedPetting = true;
+      localStorage.setItem('ruba_unlockedPetting', 'true');
+      showUnlockNotification('🌟 解锁新奖励：主人撸猫效果！');
+    }
+  }
+  
+  // 显示解锁通知
+  function showUnlockNotification(message){
+    const notification = document.createElement('div');
+    notification.className = 'unlock-notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
   }
 
   // 显示升级效果
@@ -715,6 +1223,279 @@
     const level = Math.min(game.level, 10); // 最多10种配色
     document.body.className = `level-${level}`;
   }
+  
+  // 隐藏奖励效果实现
+  
+  // 创建动态提示文字
+  function createSpeechBubble(text, type, x, y) {
+    const catArea = document.getElementById('catArea');
+    const speech = document.createElement('div');
+    speech.className = `effect-speech ${type}-speech`;
+    speech.textContent = text;
+    speech.style.left = x + 'px';
+    speech.style.top = y + 'px';
+    speech.style.transform = 'translate(-50%, -50%)';
+    catArea.appendChild(speech);
+    
+    setTimeout(() => speech.remove(), 5000);
+  }
+  
+  // 泡泡效果
+  function createBubbles(){
+    if(!game.unlockedBubbles) return;
+    
+    const catArea = document.getElementById('catArea');
+    const bubbleCount = 8; // 增加泡泡数量
+    
+    // 显示提示文字
+    const centerX = catArea.clientWidth / 2;
+    const centerY = catArea.clientHeight / 2;
+    createSpeechBubble('我爱泡泡，喜欢洗澡', 'bubble', centerX, centerY - 60);
+    
+    for(let i = 0; i < bubbleCount; i++){
+      setTimeout(() => {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        // 集中在中央区域，猫咪图片周围
+        const offsetX = (Math.random() - 0.5) * 120; // 中央±60px范围
+        const offsetY = (Math.random() - 0.5) * 80; // 中央±40px范围
+        bubble.style.left = (centerX + offsetX) + 'px';
+        bubble.style.top = (centerY + offsetY + 20) + 'px'; // 稍微偏下一点
+        bubble.style.animationDelay = Math.random() * 2 + 's';
+        // 随机大小变化
+        const size = 30 + Math.random() * 20; // 30-50px
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        catArea.appendChild(bubble);
+        
+        setTimeout(() => bubble.remove(), 5000);
+      }, i * 200); // 减少间隔时间，让泡泡更密集
+    }
+  }
+  
+  // 小老鼠玩具效果
+  function createMice(){
+    if(!game.unlockedMice) return;
+    
+    const catArea = document.getElementById('catArea');
+    const mouseCount = 5; // 增加小老鼠数量
+    
+    // 显示提示文字
+    const centerX = catArea.clientWidth / 2;
+    const centerY = catArea.clientHeight / 2;
+    createSpeechBubble('Jerry Jerry 你别跑', 'mouse', centerX, centerY - 60);
+    
+    for(let i = 0; i < mouseCount; i++){
+      setTimeout(() => {
+        const mouse = document.createElement('div');
+        mouse.className = 'mouse-toy';
+        mouse.textContent = '🐭';
+        // 集中在中央区域，猫咪图片周围
+        const offsetX = (Math.random() - 0.5) * 140; // 中央±70px范围
+        const offsetY = (Math.random() - 0.5) * 100; // 中央±50px范围
+        mouse.style.left = (centerX + offsetX) + 'px';
+        mouse.style.top = (centerY + offsetY) + 'px';
+        mouse.style.animationDelay = Math.random() * 2 + 's';
+        // 随机大小变化
+        const size = 24 + Math.random() * 16; // 24-40px
+        mouse.style.fontSize = size + 'px';
+        catArea.appendChild(mouse);
+        
+        setTimeout(() => mouse.remove(), 5000);
+      }, i * 500); // 减少间隔时间
+    }
+  }
+  
+  // 撸猫效果
+  function createPettingHand(){
+    if(!game.unlockedPetting) return;
+    
+    const catArea = document.getElementById('catArea');
+    const centerX = catArea.clientWidth / 2;
+    const centerY = catArea.clientHeight / 2;
+    
+    // 显示提示文字
+    createSpeechBubble('主人 好舒服 我要睡着了...', 'petting', centerX, centerY - 80);
+    
+    setTimeout(() => {
+      const hand = document.createElement('div');
+      hand.className = 'petting-hand';
+      hand.textContent = '✋';
+      // 更靠中央，模拟抚摸猫咪头部
+      hand.style.left = (centerX + (Math.random() - 0.5) * 20) + 'px'; // 中央±10px范围
+      hand.style.top = (centerY - 20 + (Math.random() - 0.5) * 10) + 'px'; // 稍微偏上，更靠中央
+      hand.style.transform = 'translate(-50%, -50%)';
+      hand.style.zIndex = '10'; // 确保在最上层
+      hand.style.opacity = '0.8'; // 稍微透明
+      catArea.appendChild(hand);
+      
+      setTimeout(() => hand.remove(), 5000);
+    }, Math.random() * 1000);
+  }
+  
+  // 修剪猫毛效果
+  function createScissors(){
+    if(!game.unlockedScissors) return;
+    
+    const catArea = document.getElementById('catArea');
+    const centerX = catArea.clientWidth / 2;
+    const centerY = catArea.clientHeight / 2;
+    
+    // 显示提示文字
+    createSpeechBubble('来个新发型，cool！', 'scissors', centerX, centerY - 60);
+    
+    // 创建剪刀
+    const scissors = document.createElement('div');
+    scissors.className = 'scissors';
+    scissors.textContent = '✂️';
+    scissors.style.left = (centerX + (Math.random() - 0.5) * 30) + 'px';
+    scissors.style.top = (centerY - 10 + (Math.random() - 0.5) * 20) + 'px';
+    scissors.style.transform = 'translate(-50%, -50%)';
+    scissors.style.zIndex = '12';
+    catArea.appendChild(scissors);
+    
+    // 创建掉落的猫毛
+    for(let i = 0; i < 6; i++){
+      setTimeout(() => {
+        const hair = document.createElement('div');
+        hair.className = 'cat-hair';
+        hair.style.left = (centerX + (Math.random() - 0.5) * 60) + 'px';
+        hair.style.top = (centerY + 20) + 'px';
+        hair.style.animationDelay = Math.random() * 0.5 + 's';
+        catArea.appendChild(hair);
+        
+        setTimeout(() => hair.remove(), 5000);
+      }, i * 200);
+    }
+    
+    setTimeout(() => scissors.remove(), 5000);
+  }
+  
+  // 主人抱抱效果
+  function createHug(){
+    if(!game.unlockedHug) return;
+    
+    const catArea = document.getElementById('catArea');
+    const centerX = catArea.clientWidth / 2;
+    const centerY = catArea.clientHeight / 2;
+    
+    // 显示提示文字
+    createSpeechBubble('乖乖如宝，来抱抱', 'hug', centerX, centerY - 60);
+    
+    // 创建双手环抱效果
+    const leftHand = document.createElement('div');
+    leftHand.className = 'hug-hands';
+    leftHand.textContent = '🤗';
+    leftHand.style.left = (centerX - 30) + 'px';
+    leftHand.style.top = (centerY - 10) + 'px';
+    leftHand.style.transform = 'translate(-50%, -50%)';
+    leftHand.style.zIndex = '12';
+    catArea.appendChild(leftHand);
+    
+    const rightHand = document.createElement('div');
+    rightHand.className = 'hug-hands';
+    rightHand.textContent = '🤗';
+    rightHand.style.left = (centerX + 30) + 'px';
+    rightHand.style.top = (centerY - 10) + 'px';
+    rightHand.style.transform = 'translate(-50%, -50%)';
+    rightHand.style.zIndex = '12';
+    catArea.appendChild(rightHand);
+    
+    setTimeout(() => {
+      leftHand.remove();
+      rightHand.remove();
+    }, 5000);
+  }
+  
+  // 随机触发隐藏奖励效果（过关时触发）
+  function triggerRandomRewardOnLevelUp(){
+    // 强制解锁所有效果用于测试
+    game.unlockedBubbles = true;
+    game.unlockedMice = true;
+    game.unlockedPetting = true;
+    game.unlockedScissors = true;
+    game.unlockedHug = true;
+    
+    const effects = ['bubbles', 'mice', 'petting', 'scissors', 'hug'];
+    const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+    
+    switch(randomEffect){
+      case 'bubbles':
+        createBubbles();
+        break;
+      case 'mice':
+        createMice();
+        break;
+      case 'petting':
+        createPettingHand();
+        break;
+      case 'scissors':
+        createScissors();
+        break;
+      case 'hug':
+        createHug();
+        break;
+    }
+  }
+  
+  // 轮流触发隐藏奖励效果（测试模式）
+  function triggerRotatingReward(){
+    // 强制解锁所有效果用于测试
+    game.unlockedBubbles = true;
+    game.unlockedMice = true;
+    game.unlockedPetting = true;
+    game.unlockedScissors = true;
+    game.unlockedHug = true;
+    
+    const effects = ['bubbles', 'mice', 'petting', 'scissors', 'hug'];
+    const currentEffect = effects[rewardCounter % effects.length];
+    
+    switch(currentEffect){
+      case 'bubbles':
+        createBubbles();
+        break;
+      case 'mice':
+        createMice();
+        break;
+      case 'petting':
+        createPettingHand();
+        break;
+      case 'scissors':
+        createScissors();
+        break;
+      case 'hug':
+        createHug();
+        break;
+    }
+    
+    rewardCounter++;
+  }
+  
+  // 随机触发隐藏奖励效果（原版本）
+  function triggerRandomReward(){
+    if(!game.unlockedBubbles && !game.unlockedMice && !game.unlockedPetting) return;
+    
+    const effects = [];
+    if(game.unlockedBubbles) effects.push('bubbles');
+    if(game.unlockedMice) effects.push('mice');
+    if(game.unlockedPetting) effects.push('petting');
+    
+    if(effects.length > 0){
+      const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+      
+      switch(randomEffect){
+        case 'bubbles':
+          createBubbles();
+          break;
+        case 'mice':
+          createMice();
+          break;
+        case 'petting':
+          createPettingHand();
+          break;
+      }
+    }
+  }
 
   // 增强过关庆祝效果
   function showLevelUpCelebration(got){
@@ -760,12 +1541,37 @@
     setTimeout(()=> {
       celebrationOverlay.remove();
       applyLevelColors(); // 应用新关卡配色
+      
+      // 庆祝页面显示完毕后，触发随机隐藏奖励效果
+      setTimeout(() => {
+        triggerRandomRewardOnLevelUp();
+      }, 1000); // 延迟1秒后显示效果
     }, 5000);
   }
 
   // 答题
   function handleAnswer(userVal){
+    // 停止倒计时
+    stopTimer();
+    
     const correct = currentQ.answer;
+    
+    // 检查是否超时
+    if(userVal === -999) {
+      setCatState('sad');
+      setTimeout(()=> {
+        alert(`时间到！正确答案是 ${correct} （提示：可以打开竖式试试看哦）`);
+      }, 200);
+      game.qIndex += 1;
+      localStorage.setItem('ruba_qIndex', game.qIndex);
+      if(game.qIndex >= perLevelCount){
+        setTimeout(()=> evaluateLevel(), 900);
+      } else {
+        setTimeout(()=> renderQuestion(), 800);
+      }
+      return;
+    }
+    
     if(Number(userVal) === correct){
       game.score += 1;
       game.correctInLevel += 1;
@@ -790,6 +1596,8 @@
       
       // 显示获得猫条的效果
       showRewardEffect('catStick');
+      
+      // 隐藏奖励效果现在在过关时触发，这里不触发
     } else {
       setCatState('sad');
       setTimeout(()=> {
@@ -878,7 +1686,8 @@
   // 重置
   resetBtn.addEventListener('click', ()=>{
     if(confirm('确认重置关卡与所有奖励吗？')) {
-      game = { level:1, score:0, qIndex:0, correctInLevel:0, catSticks:0, fish:0, cans:0 };
+      game = { level:1, score:0, qIndex:0, correctInLevel:0, catSticks:0, fish:0, cans:0, unlockedBubbles:false, unlockedMice:false, unlockedPetting:false, unlockedScissors:false, unlockedHug:false };
+      rewardCounter = 0;
       localStorage.setItem('ruba_level', '1');
       localStorage.setItem('ruba_score', '0');
       localStorage.setItem('ruba_qIndex', '0');
@@ -886,6 +1695,9 @@
       localStorage.setItem('ruba_catSticks', '0');
       localStorage.setItem('ruba_fish', '0');
       localStorage.setItem('ruba_cans', '0');
+      localStorage.setItem('ruba_unlockedBubbles', 'false');
+      localStorage.setItem('ruba_unlockedMice', 'false');
+      localStorage.setItem('ruba_unlockedPetting', 'false');
       levelLabel.textContent = '1';
       levelNumber.textContent = '1';
       if(scoreEl) scoreEl.textContent = '0';
@@ -894,6 +1706,92 @@
       correctThis.textContent = '0';
       updateRewardDisplay();
       renderQuestion();
+    }
+  });
+
+  // 管理员面板功能
+  const adminKeyBtn = document.getElementById('adminKeyBtn');
+  const adminTrigger = document.getElementById('adminTrigger');
+  const adminPanel = document.getElementById('adminPanel');
+  const maxValueInput = document.getElementById('maxValue');
+  const timerValueInput = document.getElementById('timerValue');
+  const saveSettingsBtn = document.getElementById('saveSettings');
+  const closeAdminBtn = document.getElementById('closeAdmin');
+  
+  // 密码验证
+  let passwordAttempts = 0;
+  const maxAttempts = 3;
+  
+  // 钥匙按钮点击事件
+  adminKeyBtn.addEventListener('click', () => {
+    const password = prompt('请输入管理员密码：');
+    if(password === '5200') {
+      adminPanel.style.display = 'block';
+      maxValueInput.value = gameSettings.maxValue;
+      timerValueInput.value = gameSettings.timerValue;
+      passwordAttempts = 0;
+    } else {
+      passwordAttempts++;
+      if(passwordAttempts >= maxAttempts) {
+        alert('密码错误次数过多，请刷新页面后重试！');
+        adminKeyBtn.style.display = 'none';
+      } else {
+        alert(`密码错误！还有 ${maxAttempts - passwordAttempts} 次机会`);
+      }
+    }
+  });
+  
+  // 备用隐藏按钮（保留功能）
+  adminTrigger.addEventListener('click', () => {
+    const password = prompt('请输入管理员密码：');
+    if(password === '5200') {
+      adminPanel.style.display = 'block';
+      maxValueInput.value = gameSettings.maxValue;
+      timerValueInput.value = gameSettings.timerValue;
+      passwordAttempts = 0;
+    } else {
+      passwordAttempts++;
+      if(passwordAttempts >= maxAttempts) {
+        alert('密码错误次数过多，请刷新页面后重试！');
+        adminTrigger.style.display = 'none';
+      } else {
+        alert(`密码错误！还有 ${maxAttempts - passwordAttempts} 次机会`);
+      }
+    }
+  });
+  
+  saveSettingsBtn.addEventListener('click', () => {
+    const newMaxValue = parseInt(maxValueInput.value, 10);
+    const newTimerValue = parseInt(timerValueInput.value, 10);
+    
+    if(newMaxValue < 50 || newMaxValue > 1000) {
+      alert('最大数值必须在50-1000之间！');
+      return;
+    }
+    
+    if(newTimerValue < 5 || newTimerValue > 60) {
+      alert('答题计时必须在5-60秒之间！');
+      return;
+    }
+    
+    gameSettings.maxValue = newMaxValue;
+    gameSettings.timerValue = newTimerValue;
+    
+    localStorage.setItem('ruba_maxValue', newMaxValue);
+    localStorage.setItem('ruba_timerValue', newTimerValue);
+    
+    alert('设置已保存！');
+    adminPanel.style.display = 'none';
+  });
+  
+  closeAdminBtn.addEventListener('click', () => {
+    adminPanel.style.display = 'none';
+  });
+  
+  // 点击面板外部关闭
+  adminPanel.addEventListener('click', (e) => {
+    if(e.target === adminPanel) {
+      adminPanel.style.display = 'none';
     }
   });
 
