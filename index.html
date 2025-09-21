@@ -1560,7 +1560,7 @@
     if(userVal === -999) {
       setCatState('sad');
       setTimeout(()=> {
-        alert(`时间到！正确答案是 ${correct} （提示：可以打开竖式试试看哦）`);
+        showErrorMessage(`时间到！正确答案是 ${correct} （提示：可以打开竖式试试看哦）`);
       }, 200);
       game.qIndex += 1;
       localStorage.setItem('ruba_qIndex', game.qIndex);
@@ -1601,7 +1601,7 @@
     } else {
       setCatState('sad');
       setTimeout(()=> {
-        alert(`哎呀，答错啦！正确答案是 ${correct} （提示：可以打开竖式试试看哦）`);
+        showErrorMessage(`哎呀，答错啦！正确答案是 ${correct} （提示：可以打开竖式试试看哦）`);
       },200);
     }
     game.qIndex += 1;
@@ -1636,7 +1636,7 @@
       
       setTimeout(()=> renderQuestion(), 2000);
     } else {
-      alert(`本关答对 ${got} / ${perLevelCount}（未达到 ${correctThreshold}）。再来一次吧！`);
+      showErrorMessage(`本关答对 ${got} / ${perLevelCount}（未达到 ${correctThreshold}）。再来一次吧！`);
       game.qIndex = 0;
       game.correctInLevel = 0;
       localStorage.setItem('ruba_qIndex', game.qIndex);
@@ -1650,7 +1650,7 @@
   submitFill.addEventListener('click', ()=>{
     const v = parseInt(answerInput.value,10);
     if(Number.isFinite(v)) handleAnswer(v);
-    else alert('请输入数字答案');
+    else showErrorMessage('请输入数字答案');
   });
   answerInput.addEventListener('keydown',(e)=>{ if(e.key==='Enter'){ submitFill.click(); } });
 
@@ -1724,40 +1724,166 @@
   
   // 钥匙按钮点击事件
   adminKeyBtn.addEventListener('click', () => {
-    const password = prompt('请输入管理员密码：');
-    if(password === '5200') {
-      adminPanel.style.display = 'block';
-      maxValueInput.value = gameSettings.maxValue;
-      timerValueInput.value = gameSettings.timerValue;
-      passwordAttempts = 0;
-    } else {
-      passwordAttempts++;
-      if(passwordAttempts >= maxAttempts) {
-        alert('密码错误次数过多，请刷新页面后重试！');
-        adminKeyBtn.style.display = 'none';
-      } else {
-        alert(`密码错误！还有 ${maxAttempts - passwordAttempts} 次机会`);
-      }
-    }
+    // 直接显示密码输入框，不阻塞倒计时
+    showPasswordInput();
   });
+  
+  // 显示非阻塞错误提示
+  function showErrorMessage(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10002;
+      font-size: 14px;
+      max-width: 300px;
+      animation: slideInRight 0.3s ease-out;
+    `;
+    
+    errorDiv.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span>⚠️</span>
+        <span>${message}</span>
+      </div>
+    `;
+    
+    // 添加动画样式
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideInRight {
+        0% { transform: translateX(100%); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(errorDiv);
+    
+    // 3秒后自动消失
+    setTimeout(() => {
+      if(document.body.contains(errorDiv)) {
+        document.body.removeChild(errorDiv);
+      }
+    }, 3000);
+  }
+  
+  // 显示非阻塞成功提示
+  function showSuccessMessage(message) {
+    const successDiv = document.createElement('div');
+    successDiv.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #27ae60, #2ecc71);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10002;
+      font-size: 14px;
+      max-width: 300px;
+      animation: slideInRight 0.3s ease-out;
+    `;
+    
+    successDiv.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span>✅</span>
+        <span>${message}</span>
+      </div>
+    `;
+    
+    document.body.appendChild(successDiv);
+    
+    // 2秒后自动消失
+    setTimeout(() => {
+      if(document.body.contains(successDiv)) {
+        document.body.removeChild(successDiv);
+      }
+    }, 2000);
+  }
+  
+  // 显示密码输入框
+  function showPasswordInput() {
+    const passwordDiv = document.createElement('div');
+    passwordDiv.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(145deg, #2c3e50, #34495e);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 10001;
+      text-align: center;
+      min-width: 300px;
+    `;
+    
+    passwordDiv.innerHTML = `
+      <h3 style="margin: 0 0 20px 0; color: #ecf0f1;">🔐 管理员验证</h3>
+      <input type="password" id="passwordInput" placeholder="请输入密码" 
+             style="width: 100%; padding: 10px; border: none; border-radius: 5px; font-size: 16px; margin-bottom: 15px;">
+      <div>
+        <button id="confirmPassword" style="background: linear-gradient(45deg, #3498db, #2980b9); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px;">确认</button>
+        <button id="cancelPassword" style="background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px;">取消</button>
+      </div>
+    `;
+    
+    document.body.appendChild(passwordDiv);
+    
+    const passwordInput = document.getElementById('passwordInput');
+    const confirmBtn = document.getElementById('confirmPassword');
+    const cancelBtn = document.getElementById('cancelPassword');
+    
+    passwordInput.focus();
+    
+    const handlePassword = () => {
+      const password = passwordInput.value;
+      if(password === '5200') {
+        adminPanel.style.display = 'block';
+        maxValueInput.value = gameSettings.maxValue;
+        timerValueInput.value = gameSettings.timerValue;
+        passwordAttempts = 0;
+        document.body.removeChild(passwordDiv);
+      } else {
+        passwordAttempts++;
+        if(passwordAttempts >= maxAttempts) {
+          // 使用非阻塞的错误提示
+          showErrorMessage('密码错误次数过多，请刷新页面后重试！');
+          adminKeyBtn.style.display = 'none';
+          document.body.removeChild(passwordDiv);
+        } else {
+          // 使用非阻塞的错误提示
+          showErrorMessage(`密码错误！还有 ${maxAttempts - passwordAttempts} 次机会`);
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      }
+    };
+    
+    const cancelPassword = () => {
+      document.body.removeChild(passwordDiv);
+    };
+    
+    confirmBtn.addEventListener('click', handlePassword);
+    cancelBtn.addEventListener('click', cancelPassword);
+    passwordInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        handlePassword();
+      }
+    });
+  }
   
   // 备用隐藏按钮（保留功能）
   adminTrigger.addEventListener('click', () => {
-    const password = prompt('请输入管理员密码：');
-    if(password === '5200') {
-      adminPanel.style.display = 'block';
-      maxValueInput.value = gameSettings.maxValue;
-      timerValueInput.value = gameSettings.timerValue;
-      passwordAttempts = 0;
-    } else {
-      passwordAttempts++;
-      if(passwordAttempts >= maxAttempts) {
-        alert('密码错误次数过多，请刷新页面后重试！');
-        adminTrigger.style.display = 'none';
-      } else {
-        alert(`密码错误！还有 ${maxAttempts - passwordAttempts} 次机会`);
-      }
-    }
+    showPasswordInput();
   });
   
   saveSettingsBtn.addEventListener('click', () => {
@@ -1765,12 +1891,12 @@
     const newTimerValue = parseInt(timerValueInput.value, 10);
     
     if(newMaxValue < 50 || newMaxValue > 1000) {
-      alert('最大数值必须在50-1000之间！');
+      showErrorMessage('最大数值必须在50-1000之间！');
       return;
     }
     
     if(newTimerValue < 5 || newTimerValue > 60) {
-      alert('答题计时必须在5-60秒之间！');
+      showErrorMessage('答题计时必须在5-60秒之间！');
       return;
     }
     
@@ -1780,7 +1906,7 @@
     localStorage.setItem('ruba_maxValue', newMaxValue);
     localStorage.setItem('ruba_timerValue', newTimerValue);
     
-    alert('设置已保存！');
+    showSuccessMessage('设置已保存！');
     adminPanel.style.display = 'none';
   });
   
